@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "Nate",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.56.2"
+  }
 }
