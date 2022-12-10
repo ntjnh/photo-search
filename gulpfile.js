@@ -1,25 +1,45 @@
-const { dest, parallel, series, src, watch } = require("gulp");
+const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const cleanCSS = require("gulp-clean-css");
+const compiler = require("webpack");
+const webpack = require("webpack-stream");
 const browserSync = require("browser-sync").create();
 
-const scss = () => {
-  return src("./src/scss/**/*.scss")
+gulp.task('sass', function() {
+  return gulp.src("./src/scss/**/*.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(cleanCSS())
-    .pipe(dest("./build/css"));
-};
+    .pipe(gulp.dest("./build/css"))
+    .pipe(browserSync.stream());
+});
 
-const serve = () => {
+gulp.task('js', function() {
+  return gulp.src(["./src/js/app.js", "./src/js/modules/*.js"])
+    .pipe(webpack({
+      mode: 'development',
+      output: {
+        filename: 'app.js',
+        clean: true
+      }
+    }, compiler))
+    .pipe(gulp.dest("./build/js"))
+});
+
+gulp.task('js:watch', gulp.series('js'), function(done) {
+  browserSync.reload();
+  done();
+});
+
+gulp.task('serve', function() {
   browserSync.init({
     server: {
       baseDir: "./"
     }
   });
-};
 
-module.exports = {
-  default: series(scss, serve),
-  sass: scss,
-  serve
-}
+  gulp.watch("./src/scss/**/*.scss", gulp.series('sass'));
+  gulp.watch("./index.html").on("change", browserSync.reload);
+  gulp.watch("./src/js/**/*.js", gulp.series('js:watch'));
+});
+
+gulp.task('default', gulp.series('sass', 'js'));
