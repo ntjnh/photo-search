@@ -8,6 +8,25 @@
   <link rel="stylesheet" href="build/css/app.css">
 </head>
 <body>
-  <h1>Photo Search</h1>
+  <header>
+    <h1>Photo Search</h1>
+  </header>
+
+  <main>
+    <section class="search">
+      <h2>Enter a search term into the form below to find interesting photos!</h2>
+      <form id="search">
+        <input type="text" aria-label="Search term">
+
+        <button type="submit">Search</button>
+      </form>
+    </section>
+
+    <section class="gallery">
+      <div class="photo-grid"></div>
+    </section>
+  </main>
+
+  <script src="build/js/app.js"></script>
 </body>
 </html>
