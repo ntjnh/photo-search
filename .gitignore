@@ -7,6 +7,7 @@
 # Build output
 build/
 dist/
+src/css/app.css
 
 # Dependency directories
 node_modules/
