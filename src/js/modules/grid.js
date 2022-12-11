@@ -12,10 +12,10 @@ export function grid(id, imgUrl, imgUrlLg, photographer, imgAlt) {
   photoEl.setAttribute("data-photo-id", id);
 
   if (!imgAlt) {
-    imgAlt = `Photo by ${photographer}`;
+    photoEl.setAttribute("alt", `Photo by ${photographer}`);
+  } else {
+    photoEl.setAttribute("alt", imgAlt);
   }
-
-  photoEl.setAttribute("alt", imgAlt);
 
   photoDiv.appendChild(photoEl);
   container.appendChild(photoDiv);
