@@ -63,9 +63,9 @@ export function photoData(key, photoId) {
       document.querySelector(".photographer-info .username a").textContent = `@${username}`;
       document.querySelector(".photographer-info .username a").setAttribute("href", profile);
       document.querySelector(".photographer-info .username a").setAttribute("target", "_blank");
-      document.querySelector(".stats .likes").innerHTML = `<span style="font-weight:600;">Likes:</span> ${likes}`;
-      document.querySelector(".stats .views").innerHTML = `<span style="font-weight:600;">Views:</span> ${views}`;
-      document.querySelector(".stats .downloads").innerHTML = `<span style="font-weight:600;">Downloads:</span> ${downloads}`;
+      document.querySelector(".stats .likes").innerHTML = `<span style="font-weight:600;">Likes:</span> ${likes.toLocaleString()}`;
+      document.querySelector(".stats .views").innerHTML = `<span style="font-weight:600;">Views:</span> ${views.toLocaleString()}`;
+      document.querySelector(".stats .downloads").innerHTML = `<span style="font-weight:600;">Downloads:</span> ${downloads.toLocaleString()}`;
       document.querySelector(".download a").setAttribute("href", photoLink);
       document.querySelector(".download a").setAttribute("target", "_blank");
 
