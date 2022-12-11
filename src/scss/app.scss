@@ -1,0 +1,244 @@
+
+$black: #222;
+$blue: #0052bd;
+$white: #fff;
+$yellow: #ffe66b;
+
+// Type
+$primary-font: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+
+$light: 300;
+$reg: 400;
+$semi-bold: 600;
+$bold: 700;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $primary-font;
+  margin: 0;
+  position: relative;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: $semi-bold;
+  }
+
+  header {
+    background-color: $black;
+    color: $white;
+    padding: 3rem 0;
+    text-align: center;
+
+    h1 {
+      border-bottom: 2px solid $yellow;
+      border-right: 2px solid $yellow;
+      display: inline-block;
+      font-size: 3rem;
+      line-height: 1;
+      margin: 0;
+      padding: 0 1rem 1rem 0;
+      text-transform: uppercase;
+    }
+  }
+
+  main {
+    section {
+      .container {
+        margin: 0 auto;
+        max-width: 90%;
+        padding: 2.5rem 1.5rem;
+      }
+
+      &.search {
+        background-color: $yellow;
+        text-align: center;
+
+        h2 {
+          margin: 0 0 1.5rem;
+        }
+
+        form {
+          input[type="text"],
+          button {
+            border: none;
+            border-radius: 0;
+            padding: .5rem 1rem;
+          }
+
+          input[type="text"] {
+            background-color: transparent;
+            border: 1px solid $black;
+            margin-right: .5rem;
+            min-width: 200px;
+            padding: .5rem;
+          }
+
+          button {
+            background-color: $black;
+            border: 1px solid $black;
+            color: $white;
+            font-weight: $semi-bold;
+            letter-spacing: .05em;
+            padding: .5rem 1rem;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $yellow;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      &.gallery {
+        .photo-grid {
+          align-items: flex-start;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+
+          .photo-thumb {
+            display: inline-block;
+            margin-bottom: 2rem;
+
+            img {
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .photo-details {
+    display: none;
+    height: 125vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 4;
+
+    .overlay {
+      background-color: rgba($black, .7);
+      height: 100%;
+      left: 0;
+      position: relative;
+      top: 0;
+      width: 100%;
+      z-index: 6;
+    }
+
+    .content {
+      background-color: $black;
+      color: $white;
+      height: 100%;
+      left: 0;
+      max-width: 798px;
+      padding: 1.5rem;
+      position: absolute;
+      top: 0;
+      width: 66%;
+      z-index: 10;
+
+      .photo {
+        max-width: 100%;
+      }
+
+      .cols {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+
+        .info {
+          border-left: 1px solid $yellow;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: column;
+          padding-left: 1.5rem;
+          width: 70%;
+
+          .description {
+            margin-top: 0;
+          }
+
+          .stats {
+            margin-bottom: 1rem;
+
+            p {
+              margin: 0;
+            }
+          }
+
+          .download {   
+            a {
+              background-color: $yellow;
+              border: 1px solid $yellow;
+              color: $black;
+              display: inline-block;
+              padding: .5rem 1rem;
+              text-align: center;
+              text-decoration: none;
+              width: 125px;
+    
+              &:hover {
+                background-color: transparent;
+                border-color: $yellow;
+                color: $yellow;
+              }
+            }
+          }
+        }
+
+        .photographer {
+          padding-right: 1.5rem;
+          text-align: center;
+          width: 30%;
+
+          img {
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            max-width: 100px;
+          }
+
+          &-info {
+            display: inline-block;
+
+            h3,
+            h4,
+            p {
+              margin: 0;
+            }
+
+            .name {
+              margin-bottom: .5rem;
+            }
+
+            .username {
+              margin-bottom: .5rem;
+
+              a {
+                color: $yellow;
+                text-decoration: none;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
