@@ -30,6 +30,12 @@ body {
     font-weight: $semi-bold;
   }
 
+  input,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+
   header {
     background-color: $black;
     color: $white;
@@ -121,7 +127,7 @@ body {
 
   .photo-details {
     display: none;
-    height: 125vh;
+    height: 100vh;
     left: 0;
     position: fixed;
     top: 0;
@@ -139,10 +145,12 @@ body {
     }
 
     .content {
+      animation: modalSlide 1.5s linear 0s 1 alternate;
+      animation-fill-mode: forwards;
       background-color: $black;
       color: $white;
       height: 100%;
-      left: 0;
+      left: -740px;
       max-width: 798px;
       padding: 1.5rem;
       position: absolute;
@@ -172,6 +180,10 @@ body {
             margin-top: 0;
           }
 
+          .photo-location {
+            margin-top: 0;
+          }
+
           .stats {
             margin-bottom: 1rem;
 
@@ -186,10 +198,10 @@ body {
               border: 1px solid $yellow;
               color: $black;
               display: inline-block;
+              min-width: 150px;
               padding: .5rem 1rem;
               text-align: center;
               text-decoration: none;
-              width: 125px;
     
               &:hover {
                 background-color: transparent;
@@ -239,6 +251,21 @@ body {
           }
         }
       }
+
+      .close {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
     }
   }
+}
+
+@keyframes modalSlide {
+  0%   {left: -740px;}
+  20%  {left: -592px;}
+  40%  {left: -444px;}
+  60%  {left: -296px;}
+  80%  {left: -148px;}
+  100% {left: 0;}
 }
