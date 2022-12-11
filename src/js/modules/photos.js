@@ -1,4 +1,5 @@
 import { grid } from './grid';
+import { getPhotoInfo } from './getPhotoInfo';
 
 export function photos(searchTerm, accessKey) {
 
@@ -15,14 +16,16 @@ export function photos(searchTerm, accessKey) {
 
       [...data.results].forEach(result => {
 
+        const photoId = result.id;
         const urlSm = result.urls.small;
         const urlReg = result.urls.regular;
         const alt = result.alt_description;
         const name = result.user.name;
 
-        grid(urlSm, urlReg, name, alt);
+        grid(photoId, urlSm, urlReg, name, alt);
       });
-
+      
+      getPhotoInfo(accessKey);
     })
     .catch(error => console.error('An error occured.', error));
 }
