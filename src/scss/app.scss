@@ -49,31 +49,22 @@ body {
       &.search {
         background-color: $yellow;
 
-        h2 {
-          margin: 0 0 1.5rem;
-        }
-
         form {
           input[type="text"],
           button {
             border: none;
             border-radius: 0;
-            padding: .5rem 1rem;
           }
 
           input[type="text"] {
-            background-color: transparent;
             border: 1px solid $black;
-            margin-right: .5rem;
             min-width: 200px;
-            padding: .5rem;
           }
 
           button {
             background-color: $black;
             border: 1px solid $black;
             letter-spacing: .05em;
-            padding: .5rem 1rem;
 
             &:hover {
               color: $yellow;
