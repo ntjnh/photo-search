@@ -1,6 +1,7 @@
 import { grid } from './grid';
 import { getPhotoInfo } from './getPhotoInfo';
 import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
 export function photos(searchTerm, accessKey) {
 
@@ -30,10 +31,17 @@ export function photos(searchTerm, accessKey) {
 
       const photoGrid = document.querySelector(".photo-grid");
       const masonryLayout = new Masonry(photoGrid, {
-        itemSelector: ".photo-thumb",
-        columnWidth: ".grid-sizer",
+        itemSelector: '.photo-thumb',
+        columnWidth: '.photo-sizer',
         percentPosition: true,
+        gutter: 16
       });
+
+      const imgLoad = imagesLoaded(photoGrid);
+      imgLoad.on("done", function() {
+        masonryLayout.layout();
+      });
+
     })
     .catch(error => console.error('An error occured.', error));
 }
