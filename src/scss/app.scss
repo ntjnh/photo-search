@@ -58,13 +58,11 @@ body {
 
           input[type="text"] {
             border: 1px solid $black;
-            min-width: 200px;
           }
 
           button {
             background-color: $black;
             border: 1px solid $black;
-            letter-spacing: .05em;
 
             &:hover {
               color: $yellow;
@@ -274,10 +272,22 @@ body {
 }
 
 @keyframes modalSlide {
-  0%   {left: -1000px;}
-  20%  {left: -800px;}
-  40%  {left: -600px;}
-  60%  {left: -400px;}
-  80%  {left: -200px;}
-  100% {left: 0;}
+  0%   {
+    left: -1000px;
+  }
+  20%  {
+    left: -800px;
+  }
+  40%  {
+    left: -600px;
+  }
+  60%  {
+    left: -400px;
+  }
+  80%  {
+    left: -200px;
+  }
+  100% {
+    left: 0;
+  }
 }
