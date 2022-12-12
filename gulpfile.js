@@ -15,10 +15,11 @@ gulp.task('css', function() {
   const postcss = require("gulp-postcss");
   const sourcemaps = require("gulp-sourcemaps");
   const autoprefixer = require("autoprefixer");
+  const tailwind = require("tailwindcss");
 
   return gulp.src("src/css/*.css")
     .pipe(sourcemaps.init())
-    .pipe(postcss([ autoprefixer(), require("tailwindcss"), require("postcss-nested") ]))
+    .pipe(postcss([ autoprefixer(), tailwind({content: ["./index.html"]}), require("postcss-nested") ]))
     .pipe(sourcemaps.write("."))
     .pipe(cleanCSS())
     .pipe(gulp.dest("./build/css"))
