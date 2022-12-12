@@ -11,18 +11,12 @@ export function photoData(key, photoId) {
     .then(response => response.json())
     .then(data => {
       const {
-        width,
-        height,
-        blur_hash: blurHash,
-        description,
         alt_description: alt,
         urls: {
           regular: urlReg,
-          full: urlFull,
         },
         links: {
-          html: photoLink,
-          download_location: download
+          html: photoLink
         },
         likes,
         user: {
@@ -42,33 +36,26 @@ export function photoData(key, photoId) {
         downloads
       } = data;
 
-      // let orientation;
-
-      // if (width > height) {
-      //   orientation = 'landscape';
-      // } else {
-      //   orientation = 'portrait';
-      // }
-
       const photoEl = document.querySelector(".photo");
       photoEl.setAttribute("src", urlReg);
       photoEl.setAttribute("alt", alt);
 
-      const descriptionEl = document.querySelector(".description");
-      descriptionEl.textContent = description ? description : "No description provided.";
-      document.querySelector(".photo-location").textContent = location;
+      if (location) {
+        document.querySelector(".photo-location").textContent = location;
+      } else {
+        document.querySelector(".photo-location").style.display = "none";
+      }
 
       document.querySelector(".photographer img").setAttribute("src", profilePic);
-      document.querySelector(".photographer-info .name").textContent = name;
-      document.querySelector(".photographer-info .username a").textContent = `@${username}`;
-      document.querySelector(".photographer-info .username a").setAttribute("href", profile);
-      document.querySelector(".photographer-info .username a").setAttribute("target", "_blank");
-      document.querySelector(".stats .likes").innerHTML = `<span style="font-weight:600;">Likes:</span> ${likes.toLocaleString()}`;
-      document.querySelector(".stats .views").innerHTML = `<span style="font-weight:600;">Views:</span> ${views.toLocaleString()}`;
-      document.querySelector(".stats .downloads").innerHTML = `<span style="font-weight:600;">Downloads:</span> ${downloads.toLocaleString()}`;
+      document.querySelector(".photographer .name span").textContent = name;
+      document.querySelector(".photographer .username a").textContent = `@${username}`;
+      document.querySelector(".photographer .username a").setAttribute("href", profile);
+      document.querySelector(".photographer .username a").setAttribute("target", "_blank");
+      document.querySelector(".stats .likes span").textContent = likes.toLocaleString();
+      document.querySelector(".stats .views span").textContent = views.toLocaleString();
+      document.querySelector(".stats .downloads span").textContent = downloads.toLocaleString();
       document.querySelector(".download a").setAttribute("href", photoLink);
       document.querySelector(".download a").setAttribute("target", "_blank");
-
     })
     .catch(error => console.error('An error occured while retrieving photo information.', error));
 }
