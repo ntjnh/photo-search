@@ -17,65 +17,75 @@
 
 <body class="relative">
   <header class="text-center text-white py-12">
-    <h1 class="text-3xl lg:text-5xl inline-block m-0 uppercase">Photo Search</h1>
+    <h1 class="font-semibold text-3xl lg:text-5xl inline-block m-0 uppercase">Photo Search</h1>
   </header>
 
   <main>
-    <section class="search">
-      <div class="container">
-        <h2>Enter a keyword or phrase into the form <br />below to find some interesting photos!</h2>
+    <section class="search text-center">
+      <div class="container mx-auto">
+        <h2 class="font-semibold text-lg md:text-2xl">Enter a keyword or phrase into the form <br />below to find some interesting photos!</h2>
 
         <form id="search">
           <input type="text" aria-label="Search term">
-          <button type="submit">Search</button>
+          <button class="font-semibold text-sm md:text-base text-white uppercase hover:cursor-pointer" type="submit">Search</button>
         </form>
       </div>
     </section>
 
     <section class="gallery">
-      <div class="container">
+      <div class="container mx-auto">
         <div class="photo-grid">
-          <div class="grid-sizer"></div>
+          <div class="photo-sizer"></div>
         </div>
       </div>
     </section>
   </main>
 
   <div class="photo-details">
-    <div class="overlay"></div>
+    <div class="overlay">
 
-    <div class="content">
-      <img class="photo" src="https://via.placeholder.com/750x500" alt="placeholder">
-
-      <div class="cols">
-        <div class="photographer">
-          <img src="https://via.placeholder.com/100x100" alt="John Smith">
-          
-          <div class="photographer-info">
-            <h3 class="name">John Smith</h3>
-            <h4 class="username"><a href="#">@jsmithphoto</a></h4>
-          </div>
-        </div>
-
-        <div class="info">
-          <div>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p class="photo-location">Amsterdam, Netherlands</p>
-          </div>
-
+      <div class="content">
+        <img class="photo" src="https://images.unsplash.com/photo-1519144905-e2eee299f508?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzODgzMzd8MHwxfGFsbHx8fHx8fHx8fDE2NzA4MDEzMzg&ixlib=rb-4.0.3&q=80&w=1080" alt="placeholder">
+  
+        <div class="photo-info">
+          <p class="photo-location">Amsterdam, Netherlands</p>
+  
           <div class="stats">
-            <p class="likes"><span style="font-weight:600;">Likes:</span> 126</p>
-            <p class="views"><span style="font-weight:600;">Views:</span> 112,083</p>
-            <p class="downloads"><span style="font-weight:600;">Downloads:</span> 23,456</p>
+            <p class="likes uppercase">
+              <span class="text-3xl block font-semibold">126</span>
+              Likes
+            </p>
+            <p class="views uppercase">
+              <span class="text-3xl block font-semibold">112,083</span>
+              Views
+            </p>
+            <p class="downloads uppercase">
+              <span class="text-3xl block font-semibold">23,456</span>
+              Downloads
+            </p>
           </div>
-
+  
+          <div class="photographer flex flex-wrap justify-between items-center">
+            <img src="https://via.placeholder.com/100x100" alt="John Smith">
+  
+            <div class="pl-4">
+              <h3 class="name font-semibold">By: <span class="font-normal">John Smith</span></h3>
+              <h4 class="username font-semibold"><a href="#">@jsmithphoto</a></h4>
+            </div>       
+          </div>
+  
           <div class="download">
             <a href="#">View on Unsplash</a>
           </div>
-        </div>        
+        </div>
+  
+        <button class="close">
+          <svg class="mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+          </svg>
+        </button>
       </div>
 
-      <button class="close">close</button>
     </div>
   </div>
 
