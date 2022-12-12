@@ -7,9 +7,9 @@ export function search(accessKey) {
     e.preventDefault();
     
     // Remove old results
-    const container = document.querySelector(".photo-grid");
-    for (const child of [...container.children]) {
-      child.remove();
+    const oldResults = document.querySelectorAll(".photo-thumb");
+    for (const result of [...oldResults]) {
+      result.remove();
     }
 
     const searchTerm = e.target.children[0].value;
