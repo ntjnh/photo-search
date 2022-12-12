@@ -43,14 +43,11 @@ body {
   main {
     section {
       .container {
-        margin: 0 auto;
-        max-width: 90%;
         padding: 2.5rem 1.5rem;
       }
 
       &.search {
         background-color: $yellow;
-        text-align: center;
 
         h2 {
           margin: 0 0 1.5rem;
@@ -75,15 +72,11 @@ body {
           button {
             background-color: $black;
             border: 1px solid $black;
-            color: $white;
-            font-weight: $semi-bold;
             letter-spacing: .05em;
             padding: .5rem 1rem;
-            text-transform: uppercase;
 
             &:hover {
               color: $yellow;
-              cursor: pointer;
             }
           }
         }
@@ -97,13 +90,38 @@ body {
           justify-content: space-between;
           width: 100%;
 
-          & > div {
-            width: 32%;
+          .photo-sizer {
+            width: 100%;
+
+            @media (min-width: 768px) {
+              width: calc((100% - 16px) / 2);
+            }
+
+            @media (min-width: 1024px) {
+              width: calc((100% - 32px) / 3);
+            }
+
+            @media (min-width: 1280px) {
+              width: calc((100% - 48px) / 4);
+            }
           }
 
           .photo-thumb {
             display: inline-block;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            width: 100%;
+
+            @media (min-width: 768px) {
+              width: calc((100% - 16px) / 2);
+            }
+
+            @media (min-width: 1024px) {
+              width: calc((100% - 32px) / 3);
+            }
+
+            @media (min-width: 1280px) {
+              width: calc((100% - 48px) / 4);
+            }
 
             img {
               height: auto;
@@ -129,8 +147,11 @@ body {
     z-index: 4;
 
     .overlay {
+      align-items: center;
       background-color: rgba($black, .7);
+      display: flex;
       height: 100%;
+      justify-content: center;
       left: 0;
       position: relative;
       top: 0;
@@ -141,80 +162,75 @@ body {
     .content {
       animation: modalSlide 1.5s linear 0s 1 alternate;
       animation-fill-mode: forwards;
-      background-color: $black;
-      color: $white;
-      height: 100%;
-      left: -740px;
-      max-width: 798px;
-      padding: 1.5rem;
-      position: absolute;
-      top: 0;
-      width: 66%;
+      background-color: $white;
+      height: fit-content;
+      left: -1000px;
+      padding: 1rem;
+      position: relative;
+      width: max-content;
       z-index: 10;
 
       .photo {
+        max-height: 90vh;
         max-width: 100%;
       }
 
-      .cols {
+      .photo-info {
+        background-color: rgba($black, .7);
+        border-radius: 8px;
+        bottom: 2rem;
+        color: $white;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: 1.5rem;
+        max-width: 500px;
+        padding: 1rem;
+        position: absolute;
+        right: 2rem;
+        width: calc(100% - 64px);
 
-        .info {
-          border-left: 1px solid $yellow;
+        .description {
+          margin-top: 0;
+        }
+
+        .photo-location {
+          margin: 0 0 .75rem;
+        }
+
+        .stats {
+          align-items: center;
           display: flex;
-          flex-wrap: nowrap;
-          flex-direction: column;
-          padding-left: 1.5rem;
-          width: 70%;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+          width: 100%;
 
-          .description {
-            margin-top: 0;
+          p {
+            margin: 0;
+            text-align: center;
           }
+        }
 
-          .photo-location {
-            margin-top: 0;
-          }
+        .download {
+          margin-left: auto;
 
-          .stats {
-            margin-bottom: 1rem;
-
-            p {
-              margin: 0;
-            }
-          }
-
-          .download {   
-            a {
-              background-color: $yellow;
-              border: 1px solid $yellow;
-              color: $black;
-              display: inline-block;
-              min-width: 150px;
-              padding: .5rem 1rem;
-              text-align: center;
-              text-decoration: none;
-    
-              &:hover {
-                background-color: transparent;
-                border-color: $yellow;
-                color: $yellow;
-              }
-            }
+          a {
+            background-color: $black;
+            border: 1px solid $black;
+            border-radius: 4px;
+            color: $yellow;
+            display: inline-block;
+            min-width: 150px;
+            padding: .5rem 1rem;
+            text-align: center;
+            text-decoration: none;
           }
         }
 
         .photographer {
-          padding-right: 1.5rem;
-          text-align: center;
-          width: 30%;
-
           img {
             border-radius: 50%;
-            margin-bottom: 1rem;
-            max-width: 100px;
+            width: 48px;
           }
 
           &-info {
@@ -247,19 +263,30 @@ body {
       }
 
       .close {
+        background: $black;
+        border-radius: 50%;
+        color: $yellow;
+        height: 32px;
         position: absolute;
-        bottom: 1.5rem;
-        right: 1.5rem;
+        right: 2rem;
+        text-align: center;
+        top: 2rem;
+        width: 32px;
+
+        svg {
+          fill: $yellow;
+          width: 16px;
+        }
       }
     }
   }
 }
 
 @keyframes modalSlide {
-  0%   {left: -740px;}
-  20%  {left: -592px;}
-  40%  {left: -444px;}
-  60%  {left: -296px;}
-  80%  {left: -148px;}
+  0%   {left: -1000px;}
+  20%  {left: -800px;}
+  40%  {left: -600px;}
+  60%  {left: -400px;}
+  80%  {left: -200px;}
   100% {left: 0;}
 }
