@@ -4,6 +4,10 @@ const cleanCSS = require("gulp-clean-css");
 const compiler = require("webpack");
 const webpack = require("webpack-stream");
 const browserSync = require("browser-sync").create();
+const gulpIf = require("gulp-if");
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
+const argv = yargs(hideBin(process.argv)).argv;
 
 gulp.task('sass', function() {
   return gulp.src("./src/scss/**/*.scss")
@@ -28,13 +32,19 @@ gulp.task('css', function() {
 
 gulp.task('js', function() {
   return gulp.src(["./src/js/app.js", "./src/js/modules/*.js"])
-    .pipe(webpack({
-      mode: 'development',
+    .pipe(gulpIf(argv.production, webpack({
+      mode: 'production',
       output: {
         filename: 'app.js',
         clean: true
       }
-    }, compiler))
+    }, compiler), webpack({
+      mode: 'development',
+      output: {
+        filename: 'app.js',
+        clean: false
+      }
+    }, compiler)))
     .pipe(gulp.dest("./build/js"))
 });
 
