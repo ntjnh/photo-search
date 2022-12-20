@@ -4,6 +4,10 @@
   "description": "An app for searching for cool photos",
   "main": "app.js",
   "scripts": {
+    "build": "gulp build --production",
+    "dev": "gulp build --dev",
+    "js": "gulp js",
+    "start": "gulp",
     "test": "jest"
   },
   "keywords": [],
