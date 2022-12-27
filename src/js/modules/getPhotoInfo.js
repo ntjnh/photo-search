@@ -8,10 +8,13 @@ export function getPhotoInfo(key) {
       const id = e.target.dataset.photoId;
       const body = document.getElementsByTagName("body")[0];
       const photoPanel = document.querySelector(".photo-details");
+      const photoPanelContent = document.querySelector(".photo-details .content");
   
       photoData(key, id);
 
       photoPanel.style.display = "block";
+      photoPanelContent.classList.remove("slide-out");
+      photoPanelContent.classList.add("slide-in");
       body.style.overflow = "hidden";
     });
   }
