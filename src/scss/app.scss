@@ -163,11 +163,13 @@ body {
       &.slide-in {
         animation: modalSlideIn 1.5s linear 0s 1 normal;
         animation-fill-mode: forwards;
+        left: -1000px;
       }
 
       &.slide-out {
         animation: modalSlideOut 1.5s linear 0s 1 normal;
         animation-fill-mode: forwards;
+        left: 0;
       }
 
       .photo {
