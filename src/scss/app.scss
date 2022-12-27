@@ -147,20 +147,28 @@ body {
       left: 0;
       position: relative;
       top: 0;
+      transition: backgroundColor .7s ease-in-out;
       width: 100%;
       z-index: 6;
     }
 
     .content {
-      animation: modalSlide 1.5s linear 0s 1 alternate;
-      animation-fill-mode: forwards;
       background-color: $white;
       height: fit-content;
-      left: -1000px;
       padding: 1rem;
       position: relative;
       width: max-content;
       z-index: 10;
+
+      &.slide-in {
+        animation: modalSlideIn 1.5s linear 0s 1 normal;
+        animation-fill-mode: forwards;
+      }
+
+      &.slide-out {
+        animation: modalSlideOut 1.5s linear 0s 1 normal;
+        animation-fill-mode: forwards;
+      }
 
       .photo {
         max-height: 90vh;
@@ -274,7 +282,7 @@ body {
   }
 }
 
-@keyframes modalSlide {
+@keyframes modalSlideIn {
   0%   {
     left: -1000px;
   }
@@ -292,5 +300,26 @@ body {
   }
   100% {
     left: 0;
+  }
+}
+
+@keyframes modalSlideOut {
+  0%   {
+    left: 0;
+  }
+  20%  {
+    left: -300px;
+  }
+  40%  {
+    left: -600px;
+  }
+  60%  {
+    left: -900px;
+  }
+  80%  {
+    left: -1200px;
+  }
+  100% {
+    left: -1500px;
   }
 }
