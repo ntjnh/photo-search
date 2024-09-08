@@ -1,13 +1,21 @@
-const gulp = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
-const cleanCSS = require("gulp-clean-css");
-const compiler = require("webpack");
-const webpack = require("webpack-stream");
-const browserSync = require("browser-sync").create();
-const yargs = require("yargs/yargs");
-const { hideBin } = require("yargs/helpers");
-const argv = yargs(hideBin(process.argv)).argv;
-const del = require("del");
+import gulp from 'gulp'
+import * as dartSass from 'sass'
+import gulpSass from 'gulp-sass'
+const sass = gulpSass(dartSass)
+import cleanCSS from 'gulp-clean-css'
+import webpack from 'webpack-stream'
+import * as bSync from 'browser-sync'
+const browserSync = bSync.create()
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
+const argv = yargs(hideBin(process.argv)).argv
+import { deleteAsync } from 'del'
+
+import postcss from 'gulp-postcss'
+import sourcemaps from 'gulp-sourcemaps'
+import autoprefixer from 'autoprefixer'
+import tailwind from 'tailwindcss'
+import postcssNested from 'postcss-nested'
 
 gulp.task('sass', function() {
   return gulp.src("./src/scss/**/*.scss")
@@ -16,43 +24,26 @@ gulp.task('sass', function() {
 });
 
 gulp.task('css', function() {
-  const postcss = require("gulp-postcss");
-  const sourcemaps = require("gulp-sourcemaps");
-  const autoprefixer = require("autoprefixer");
-  const tailwind = require("tailwindcss");
-
   return gulp.src("src/css/*.css")
     .pipe(sourcemaps.init())
-    .pipe(postcss([ autoprefixer(), tailwind({content: ["./index.html"]}), require("postcss-nested") ]))
+    .pipe(postcss([ autoprefixer(), tailwind({content: ["./index.html"]}), postcssNested ]))
     .pipe(sourcemaps.write("."))
     .pipe(cleanCSS())
     .pipe(gulp.dest("./build/css"))
     .pipe(browserSync.stream())
 })
 
-function jsStages() {
-  if (argv.production) {
-    return webpack({
+
+
+gulp.task('js', function() {
+  return gulp.src(["./src/js/app.js", "./src/js/modules/*.js"])
+    .pipe(webpack({
       mode: 'production',
       output: {
         filename: 'app.js',
         clean: true
       }
-    }, compiler);
-  } else {
-    return webpack({
-      mode: 'development',
-      output: {
-        filename: 'app.js',
-        clean: false
-      }
-    }, compiler);
-  }
-}
-
-gulp.task('js', function() {
-  return gulp.src(["./src/js/app.js", "./src/js/modules/*.js"])
-    .pipe(jsStages())
+    }))
     .pipe(gulp.dest("./build/js"))
 });
 
@@ -99,7 +90,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function() {
-  return del(["build/css/*", "build/js/*"]);
+  return deleteAsync(["build/css/*", "build/js/*"]);
 });
 
 gulp.task('default', gulp.series('sass', 'css', 'js', 'serve', 'watch'));
