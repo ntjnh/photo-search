@@ -5,7 +5,6 @@ import gulpSass from 'gulp-sass'
 const sass = gulpSass(dartSass)
 import cleanCSS from 'gulp-clean-css'
 import postcss from 'gulp-postcss'
-import sourcemaps from 'gulp-sourcemaps'
 import autoprefixer from 'autoprefixer'
 import tailwind from 'tailwindcss'
 import postcssNested from 'postcss-nested'
@@ -28,14 +27,12 @@ gulp.task('sass', function() {
 
 gulp.task('css', function() {
   return gulp.src('src/css/*.css')
-    .pipe(sourcemaps.init())
     .pipe(postcss([
       autoprefixer(),
       tailwind({
         content: ['./index.html']}),
         postcssNested
     ]))
-    .pipe(sourcemaps.write('.'))
     .pipe(cleanCSS())
     .pipe(gulp.dest('./build/css'))
     .pipe(browserSync.stream())
