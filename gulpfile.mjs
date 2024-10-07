@@ -14,9 +14,6 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 const argv = yargs(hideBin(process.argv)).argv
 
-import * as bSync from 'browser-sync'
-const browserSync = bSync.create()
-
 import { deleteAsync } from 'del'
 
 gulp.task('sass', function() {
@@ -35,7 +32,6 @@ gulp.task('css', function() {
     ]))
     .pipe(cleanCSS())
     .pipe(gulp.dest('./build/css'))
-    .pipe(browserSync.stream())
 })
 
 function jsStages() {
@@ -89,20 +85,9 @@ gulp.task('js:watch', gulp.series('js'), function() {
     .pipe(gulp.dest('./build/js'))
 })
 
-gulp.task('serve', function(done) {
-  browserSync.init({
-    server: {
-      baseDir: './'
-    }
-  })
-
-  done()
-})
-
 gulp.task('watch', function() {
   gulp.watch('./src/scss/**/*.scss', gulp.series('sass'))
   gulp.watch('./src/css/*.css', gulp.series('css'))
-  gulp.watch('./index.html').on('change', browserSync.reload)
   gulp.watch('./src/js/**/*.js', gulp.series('js:watch'))
 })
 
